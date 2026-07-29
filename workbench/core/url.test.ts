@@ -171,3 +171,21 @@ describe('writeLocation', () => {
     })
   })
 })
+
+describe('non-ASCII round trip', () => {
+  const throughBrowser = (value: string): string => {
+    const param = encodeArgs({ label: '' }, { label: value })
+    return new URL(`http://x/?${param}`).search.slice(1)
+  }
+
+  it.each(['café', '日本', '—dash', 'a;b:c%d', 'Ship it'])(
+    'survives the browser serialising %j into the URL',
+    (value) => {
+      expect(decodeArgs(throughBrowser(value)).label).toBe(value)
+    },
+  )
+
+  it('falls back to the raw text on a malformed escape', () => {
+    expect(decodeArgs('label:100%').label).toBe('100%')
+  })
+})

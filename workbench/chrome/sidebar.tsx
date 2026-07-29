@@ -18,8 +18,12 @@ const STORE_KEY = 'oxide-workbench:collapsed'
 
 const readCollapsed = (): Record<string, boolean> => {
   try {
-    const raw = localStorage.getItem(STORE_KEY)
-    return raw ? (JSON.parse(raw) as Record<string, boolean>) : {}
+    /* Valid JSON is not necessarily the shape we stored: `null` parses fine and
+       then throws on the first key lookup. */
+    const parsed: unknown = JSON.parse(localStorage.getItem(STORE_KEY) ?? '{}')
+    return typeof parsed === 'object' && parsed !== null && !Array.isArray(parsed)
+      ? (parsed as Record<string, boolean>)
+      : {}
   } catch {
     return {}
   }
@@ -152,7 +156,11 @@ export function GallerySidebar({
   const tree = useMemo(() => filterTree(full, query), [full, query])
 
   useEffect(() => {
-    localStorage.setItem(STORE_KEY, JSON.stringify(collapsed))
+    try {
+      /* Private browsing and a full quota both reject writes; losing the
+         collapse state is not worth taking the gallery down with it. */
+      localStorage.setItem(STORE_KEY, JSON.stringify(collapsed))
+    } catch {}
   }, [collapsed])
 
   // `collapsed` is read but deliberately not a trigger: re-running on every toggle

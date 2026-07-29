@@ -99,7 +99,7 @@ docs/           written documentation
 ```sh
 bun run dev       # gallery
 bun run test      # vitest
-bun run verify    # lint, tokens, types, build, tests
+bun run verify    # lint, tokens, types, build, tests, gallery
 ```
 
-`verify` is what CI runs and what must pass before a change lands.
+`verify` must pass before a change lands. There is no CI yet, so run it yourself.

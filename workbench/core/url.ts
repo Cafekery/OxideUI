@@ -25,9 +25,14 @@ const encodeValue = (value: unknown): string | null => {
 
 const decodeValue = (raw: string): unknown => {
   if (Object.hasOwn(LITERALS, raw)) return LITERALS[raw]
-  const text = raw.replace(/%([0-9a-fA-F]{2})/g, (_, hex: string) =>
-    String.fromCharCode(Number.parseInt(hex, 16)),
-  )
+  let text: string
+  try {
+    /* Percent-escapes are UTF-8 byte sequences once the browser has serialised
+       the URL, so decoding them a byte at a time mangles anything non-ASCII. */
+    text = decodeURIComponent(raw)
+  } catch {
+    text = raw
+  }
   return /^-?\d*\.?\d+$/.test(text) ? Number(text) : text
 }
 
