@@ -1,5 +1,4 @@
-/* Palette, type scale, radii and layout constants.
-   Values are generated from the OKLCH source; edit the generator, not these. */
+/* Palette, type scale, radii and layout constants. */
 
 /* Drop Tailwind's stock palette and radii so only design-system tokens
    resolve as utilities — an unmapped `bg-slate-500` should fail loudly. */
@@ -9,23 +8,12 @@
 }
 
 @theme {
-  --font-sans: var(
-    --oxide-font-sans,
-    ui-sans-serif,
-    -apple-system,
-    BlinkMacSystemFont,
-    Helvetica,
-    Arial,
-    sans-serif
-  );
-  --font-mono: var(
-    --oxide-font-mono,
-    ui-monospace,
-    SFMono-Regular,
-    Menlo,
-    Consolas,
-    monospace
-  );
+  --font-sans:
+    var(--oxide-font-sans, "Suisse Intl"), -apple-system, BlinkMacSystemFont, Helvetica,
+    Arial, sans-serif;
+  --font-mono:
+    var(--oxide-font-mono, "Suisse Intl Mono"), ui-monospace, SFMono-Regular, Menlo,
+    Consolas, monospace;
 
   --color-neutral-1300: oklch(0.995 0.0001 260);
   --color-neutral-1200: oklch(0.975 0.0001 260);

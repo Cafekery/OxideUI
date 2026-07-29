@@ -1,0 +1,32 @@
+@font-face {
+  font-family: "Suisse Intl";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./fonts/SuisseIntl-Regular.woff2") format("woff2");
+}
+
+/* 450 is Swiss Typefaces' "Book" cut, not a synthesised weight. */
+@font-face {
+  font-family: "Suisse Intl";
+  font-style: normal;
+  font-weight: 450;
+  font-display: swap;
+  src: url("./fonts/SuisseIntl-Book.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Suisse Intl";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("./fonts/SuisseIntl-Medium.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Suisse Intl Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./fonts/SuisseIntlMono-Regular.woff2") format("woff2");
+}

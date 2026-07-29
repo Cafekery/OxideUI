@@ -73,7 +73,7 @@ logs callback props as they fire, and puts the current story and its edited args
 
 - [Getting started](docs/getting-started.md) — install, wire up, first component
 - [Conventions](docs/conventions.md) — props, `className`, tokens, theming, a11y
-- [Theming](docs/theming.md) — tokens, light/dark, swapping the accent, fonts
+- [Theming](docs/theming.md) — tokens, light/dark, swapping the accent
 - [Components](docs/components) — one page per component
 
 ## Layout

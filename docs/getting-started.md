@@ -58,18 +58,22 @@ or the page flashes dark before switching.
 
 ## Fonts
 
-The library does not ship fonts. It reads two optional variables and falls back to the
-system stack:
+Suisse Intl ships with the library, subset and self-hosted — Regular (400), Book (450) and
+Medium (500), plus Suisse Intl Mono. Importing the stylesheet registers them; there is
+nothing else to wire up and no CDN request.
+
+To substitute your own, define either variable on `:root` anywhere in your stylesheet —
+custom properties resolve at computed-value time, so the declaration order does not matter:
 
 ```css
 :root {
-  --oxide-font-sans: 'Your Sans', sans-serif;
-  --oxide-font-mono: 'Your Mono', monospace;
+  --oxide-font-sans: 'Your Sans';
+  --oxide-font-mono: 'Your Mono';
 }
 ```
 
-Self-host the faces. Uppercase mono carries labels, buttons and table headers, so pick a
-mono you are happy reading in caps.
+The system stack stays behind whichever family is active, so text always renders. Uppercase
+mono carries labels, buttons and table headers, so pick a mono you are happy reading in caps.
 
 ## First component
 
