@@ -1,6 +1,7 @@
 import { type ReactNode, useSyncExternalStore } from 'react'
 import { Toaster as SonnerToaster, toast as sonner } from 'sonner'
 import { AlertTriangle, CircleCheck, Close, InfoCircle } from '../icons'
+import { observeTheme } from '../lib/observe-theme'
 import { Spinner } from '../primitives'
 
 const BASE =
@@ -16,22 +17,13 @@ const TINT = {
   notice: 'bg-notice-secondary! border-notice!',
 }
 
-const subscribeTheme = (onChange: () => void) => {
-  const observer = new MutationObserver(onChange)
-  observer.observe(document.documentElement, {
-    attributes: true,
-    attributeFilter: ['data-theme'],
-  })
-  return () => observer.disconnect()
-}
-
 const readTheme = () =>
   document.documentElement.dataset.theme === 'light'
     ? ('light' as const)
     : ('dark' as const)
 
 export function Toaster() {
-  const theme = useSyncExternalStore(subscribeTheme, readTheme, () => 'dark' as const)
+  const theme = useSyncExternalStore(observeTheme, readTheme, () => 'dark' as const)
   return (
     <SonnerToaster
       theme={theme}

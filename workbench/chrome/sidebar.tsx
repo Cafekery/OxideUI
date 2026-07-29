@@ -12,6 +12,7 @@ import {
   type TreeNode,
   writeLocation,
 } from '../core'
+import { isTypingTarget } from './typing-target'
 
 const STORE_KEY = 'oxide-workbench:collapsed'
 
@@ -171,12 +172,7 @@ export function GallerySidebar({
   useEffect(() => {
     const focusSearch = (event: KeyboardEvent) => {
       if (event.key !== '/' || event.metaKey || event.ctrlKey || event.altKey) return
-      const target = event.target
-      if (
-        target instanceof HTMLElement &&
-        (target.isContentEditable || /^(?:INPUT|TEXTAREA|SELECT)$/.test(target.tagName))
-      )
-        return
+      if (isTypingTarget(event.target)) return
       event.preventDefault()
       search.current?.focus()
       search.current?.select()

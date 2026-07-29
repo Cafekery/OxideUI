@@ -17,8 +17,6 @@ export type PreparedStory = {
   name: string
   /** Slash-delimited sidebar path, e.g. `Primitives/Button`. */
   title: string
-  importPath: string
-  component?: AnyComponent
   initialArgs: Args
   argTypes: Record<string, ArgType>
   decorators: Decorator[]
@@ -27,7 +25,7 @@ export type PreparedStory = {
 }
 
 /** Sidebar entry: everything the chrome needs without evaluating a story. */
-export type IndexEntry = Pick<PreparedStory, 'id' | 'name' | 'title' | 'importPath'> & {
+export type IndexEntry = Pick<PreparedStory, 'id' | 'name' | 'title'> & {
   initialArgs: Args
   argTypes: Record<string, ArgType>
 }

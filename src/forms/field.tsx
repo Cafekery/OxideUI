@@ -29,7 +29,10 @@ export const CONTROL_BASE =
 export const controlBorder = (invalid?: boolean) =>
   invalid ? 'border-error' : 'border-default enabled:hover:border-raise'
 
-export function useFieldIds(description?: ReactNode, error?: ReactNode): FieldControl {
+export const inlineLabel = (disabled?: boolean) =>
+  cn('text-sans-14', disabled ? 'text-disabled' : 'text-default')
+
+function useFieldIds(description?: ReactNode, error?: ReactNode): FieldControl {
   const uid = useId()
   const descriptionId = description ? `${uid}-description` : undefined
   const errorId = error ? `${uid}-error` : undefined
@@ -46,7 +49,7 @@ export function useFieldIds(description?: ReactNode, error?: ReactNode): FieldCo
   }
 }
 
-export function RequiredMark() {
+function RequiredMark() {
   return (
     <span aria-hidden="true" className="text-error">
       *
@@ -54,7 +57,7 @@ export function RequiredMark() {
   )
 }
 
-export function FieldDescription({ id, children }: { id?: string; children: ReactNode }) {
+function FieldDescription({ id, children }: { id?: string; children: ReactNode }) {
   return (
     <span id={id} className="text-sans-12 text-tertiary">
       {children}
@@ -62,7 +65,7 @@ export function FieldDescription({ id, children }: { id?: string; children: Reac
   )
 }
 
-export function FieldError({ id, children }: { id?: string; children: ReactNode }) {
+function FieldError({ id, children }: { id?: string; children: ReactNode }) {
   return (
     <span id={id} className="text-sans-12 text-error">
       {children}
@@ -101,6 +104,49 @@ export function Field({
       )}
       {children(control)}
       {error && <FieldError id={control.errorId}>{error}</FieldError>}
+    </div>
+  )
+}
+
+type InlineFieldProps = {
+  label: ReactNode
+  description?: ReactNode
+  error?: ReactNode
+  required?: boolean
+  disabled?: boolean
+  /** Left padding that clears the control, aligning the description with the label. */
+  indent: string
+  children: (control: FieldControl) => ReactNode
+}
+
+export function InlineField({
+  label,
+  description,
+  error,
+  required,
+  disabled,
+  indent,
+  children,
+}: InlineFieldProps) {
+  const control = useFieldIds(description, error)
+
+  return (
+    <div className="flex flex-col gap-1">
+      <div className="flex items-center gap-2">
+        {children(control)}
+        <Label.Root htmlFor={control.id} className={inlineLabel(disabled)}>
+          {label}
+        </Label.Root>
+        {required && <RequiredMark />}
+      </div>
+      {(description || error) && (
+        <div className={cn('flex flex-col gap-1', indent)}>
+          {description && (
+            <FieldDescription id={control.descriptionId}>{description}</FieldDescription>
+          )}
+          {error && <FieldError id={control.errorId}>{error}</FieldError>}
+        </div>
+      )}
     </div>
   )
 }

@@ -12,6 +12,7 @@ import { Canvas } from './canvas'
 import { Inspector } from './inspector'
 import { GallerySidebar } from './sidebar'
 import { Toolbar } from './toolbar'
+import { isTypingTarget } from './typing-target'
 
 const ACTION_LIMIT = 100
 
@@ -33,19 +34,12 @@ window.__oxideChrome = {
 const opened = readLocation(window.location.search)
 
 /* Keys pressed inside the preview never reach the chrome's window listener, so
-   the frame hands back the one shortcut the gallery owns. Cross-realm, so the
-   focused element is duck-typed rather than `instanceof` checked. */
+   the frame hands back the one shortcut the gallery owns. */
 const forwardSearchKey = (frame: HTMLIFrameElement) => {
   const doc = frame.contentDocument
   doc?.addEventListener('keydown', (event) => {
     if (event.key !== '/' || event.metaKey || event.ctrlKey || event.altKey) return
-    const active = doc.activeElement
-    if (
-      active &&
-      (/^(?:INPUT|TEXTAREA|SELECT)$/.test(active.tagName) ||
-        active.getAttribute('contenteditable') !== null)
-    )
-      return
+    if (isTypingTarget(doc.activeElement)) return
     event.preventDefault()
     window.dispatchEvent(new KeyboardEvent('keydown', { key: '/' }))
   })

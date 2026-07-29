@@ -1,27 +1,19 @@
-import type { ComponentPropsWithRef } from 'react'
 import { Line, LineChart as RechartsLineChart } from 'recharts'
 import {
+  type CartesianChartProps,
   CHART_MARGIN,
-  type ChartDatum,
   ChartFrame,
   type ChartSeries,
   grid,
   seriesColor,
-  type TickFormatter,
   tooltip,
   xAxis,
   yAxis,
 } from './chart-parts'
 import { useChartTheme } from './use-chart-theme'
 
-export type LineChartProps = Omit<ComponentPropsWithRef<'div'>, 'children'> & {
-  'aria-label': string
-  data: readonly ChartDatum[]
-  xKey: string
+export type LineChartProps = CartesianChartProps & {
   series: readonly ChartSeries[]
-  height?: number
-  formatX?: TickFormatter
-  formatY?: TickFormatter
 }
 
 export function LineChart({

@@ -35,16 +35,23 @@ const isPlainObject = (value: unknown): value is Record<string, unknown> => {
   return proto === Object.prototype || proto === null
 }
 
+/** Drops `undefined` values, so a story naming a key without giving it a value
+ *  cannot blank the one it inherits from meta. */
+const defined = (over: Record<string, unknown>): Record<string, unknown> =>
+  Object.fromEntries(Object.entries(over).filter(([, value]) => value !== undefined))
+
+/** Merges one level of nesting, which is all either caller can reach:
+ *  `StoryParameters` is flat and an `ArgType` holds no nested objects, so
+ *  `argTypes[name].control` is the deepest key that exists. */
 export const deepMerge = <T extends Record<string, unknown>>(
   base: T,
   over: Record<string, unknown>,
 ): T => {
-  const merged: Record<string, unknown> = { ...base }
+  const merged: Record<string, unknown> = { ...base, ...defined(over) }
   for (const [key, value] of Object.entries(over)) {
-    if (value === undefined) continue
-    const existing = merged[key]
-    merged[key] =
-      isPlainObject(existing) && isPlainObject(value) ? deepMerge(existing, value) : value
+    const existing = base[key]
+    if (isPlainObject(existing) && isPlainObject(value))
+      merged[key] = { ...existing, ...defined(value) }
   }
   return merged as T
 }
@@ -74,8 +81,6 @@ export const prepareModule = (importPath: string, mod: StoryModule): PreparedSto
       id,
       name: story.name || derivedName,
       title,
-      importPath,
-      component,
       initialArgs: { ...meta.args, ...story.args },
       argTypes: deepMerge(meta.argTypes ?? {}, story.argTypes ?? {}),
       decorators: [...(story.decorators ?? []), ...(meta.decorators ?? [])],

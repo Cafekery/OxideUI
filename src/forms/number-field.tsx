@@ -37,6 +37,9 @@ export function NumberField({
   className,
   ...rest
 }: NumberFieldProps) {
+  const lower = min ?? Number.NEGATIVE_INFINITY
+  const upper = max ?? Number.POSITIVE_INFINITY
+
   const [current, setCurrent] = useControllable<number>(
     value,
     defaultValue ?? min ?? 0,
@@ -49,10 +52,7 @@ export function NumberField({
   const [draft, setDraft] = useState<{ text: string; value: number } | null>(null)
 
   const commit = (next: number) => {
-    const bounded = Math.min(
-      max ?? Number.POSITIVE_INFINITY,
-      Math.max(min ?? Number.NEGATIVE_INFINITY, next),
-    )
+    const bounded = Math.min(upper, Math.max(lower, next))
     setCurrent(bounded)
     return bounded
   }
@@ -108,7 +108,7 @@ export function NumberField({
           variant="ghost"
           size="sm"
           className="text-sans-16"
-          disabled={disabled || current <= (min ?? Number.NEGATIVE_INFINITY)}
+          disabled={disabled || current <= lower}
           onClick={() => nudge(-1)}
         >
           <Minus />
@@ -121,7 +121,7 @@ export function NumberField({
           variant="ghost"
           size="sm"
           className="text-sans-16"
-          disabled={disabled || current >= (max ?? Number.POSITIVE_INFINITY)}
+          disabled={disabled || current >= upper}
           onClick={() => nudge(1)}
         >
           <Plus />

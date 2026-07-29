@@ -1,5 +1,6 @@
 import type { ComponentPropsWithRef } from 'react'
 import { ChevronLeft, ChevronRight } from '../icons'
+import { clamp } from '../lib/clamp'
 import { cn } from '../lib/cn'
 import { IconButton } from '../primitives'
 
@@ -11,9 +12,6 @@ const PAGE_SIZES = [10, 25, 50, 100]
 const range = (from: number, to: number): number[] =>
   Array.from({ length: to - from + 1 }, (_, offset) => from + offset)
 
-const clamp = (page: number, pageCount: number) =>
-  Math.min(Math.max(Math.trunc(page), 1), pageCount)
-
 /** Once `pageCount` exceeds MAX_SLOTS the result is always exactly MAX_SLOTS
  *  long, so the control keeps a stable width while the user pages through.
  *  Each ellipsis stands in for at least two pages, never one. */
@@ -21,7 +19,7 @@ export function paginationWindow(page: number, pageCount: number): PageSlot[] {
   if (pageCount < 1) return []
   if (pageCount <= MAX_SLOTS) return range(1, pageCount)
 
-  const current = clamp(page, pageCount)
+  const current = clamp(Math.trunc(page), 1, pageCount)
   const gapAfterFirst = current > 4
   const gapBeforeLast = current < pageCount - 3
 
@@ -86,7 +84,7 @@ export function Pagination({
 }: PaginationProps) {
   if (pageCount < 1) return null
 
-  const current = clamp(page, pageCount)
+  const current = clamp(Math.trunc(page), 1, pageCount)
   const slots = paginationWindow(current, pageCount)
 
   return (

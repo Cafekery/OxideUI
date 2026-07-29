@@ -1,9 +1,9 @@
-import { Checkbox as CheckboxPrimitive, Label } from 'radix-ui'
+import { Checkbox as CheckboxPrimitive } from 'radix-ui'
 import type { ComponentPropsWithRef, ReactNode } from 'react'
 import { Check, Minus } from '../icons'
 import { cn } from '../lib/cn'
 import { useControllable } from '../lib/use-controllable'
-import { FieldDescription, FieldError, RequiredMark, useFieldIds } from './field'
+import { InlineField } from './field'
 
 export type CheckboxProps = Omit<
   ComponentPropsWithRef<typeof CheckboxPrimitive.Root>,
@@ -28,35 +28,39 @@ export function Checkbox({
   className,
   ...rest
 }: CheckboxProps) {
-  const control = useFieldIds(description, error)
   const [state, setState] = useControllable<CheckboxPrimitive.CheckedState>(
     checked,
     defaultChecked ?? false,
     onCheckedChange,
   )
 
-  const box = disabled
-    ? 'border-default bg-disabled text-disabled'
-    : state === false
-      ? cn(
-          'bg-default hover:border-raise',
-          control.invalid ? 'border-error' : 'border-default',
-        )
-      : 'border-accent bg-accent-inverse text-inverse'
+  const box = (invalid: boolean) =>
+    disabled
+      ? 'border-default bg-disabled text-disabled'
+      : state === false
+        ? cn('bg-default hover:border-raise', invalid ? 'border-error' : 'border-default')
+        : 'border-accent bg-accent-inverse text-inverse'
 
   return (
-    <div className="flex flex-col gap-1">
-      <div className="flex items-center gap-2">
+    <InlineField
+      label={label}
+      description={description}
+      error={error}
+      required={rest.required}
+      disabled={disabled}
+      indent="pl-6"
+    >
+      {({ id, describedBy, errorId, invalid }) => (
         <CheckboxPrimitive.Root
           {...rest}
-          id={control.id}
+          id={id}
           checked={state}
           onCheckedChange={setState}
           disabled={disabled}
-          aria-describedby={control.describedBy}
-          aria-errormessage={control.errorId}
-          aria-invalid={control.invalid || undefined}
-          className={cn(BOX, box, className)}
+          aria-describedby={describedBy}
+          aria-errormessage={errorId}
+          aria-invalid={invalid || undefined}
+          className={cn(BOX, box(invalid), className)}
         >
           <CheckboxPrimitive.Indicator className="flex">
             {state === 'indeterminate' ? (
@@ -66,22 +70,7 @@ export function Checkbox({
             )}
           </CheckboxPrimitive.Indicator>
         </CheckboxPrimitive.Root>
-        <Label.Root
-          htmlFor={control.id}
-          className={cn('text-sans-14', disabled ? 'text-disabled' : 'text-default')}
-        >
-          {label}
-        </Label.Root>
-        {rest.required && <RequiredMark />}
-      </div>
-      {(description || error) && (
-        <div className="flex flex-col gap-1 pl-6">
-          {description && (
-            <FieldDescription id={control.descriptionId}>{description}</FieldDescription>
-          )}
-          {error && <FieldError id={control.errorId}>{error}</FieldError>}
-        </div>
       )}
-    </div>
+    </InlineField>
   )
 }

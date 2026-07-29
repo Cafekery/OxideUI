@@ -1,7 +1,7 @@
 import type { ComponentPropsWithRef } from 'react'
 import { AlertTriangle } from '../icons'
-import { cn } from '../lib/cn'
 import { Button } from '../primitives'
+import { CenteredState, StateDescription, StateTitle } from './state-parts'
 
 export type ErrorStateProps = ComponentPropsWithRef<'div'> & {
   title?: string
@@ -29,20 +29,13 @@ export function ErrorState({
   error,
   showDetails = false,
   onRetry,
-  className,
   ...rest
 }: ErrorStateProps) {
   return (
-    <div
-      className={cn(
-        'flex flex-col items-center justify-center gap-2 px-6 py-12 text-center',
-        className,
-      )}
-      {...rest}
-    >
+    <CenteredState {...rest}>
       <AlertTriangle aria-hidden className="mb-1 text-error text-sans-28" />
-      <p className="text-default text-sans-semi-md">{title}</p>
-      <p className="max-w-prose text-sans-14 text-tertiary">{description}</p>
+      <StateTitle>{title}</StateTitle>
+      <StateDescription>{description}</StateDescription>
       {onRetry ? (
         <Button className="mt-4" onClick={onRetry} size="sm" variant="secondary">
           Retry
@@ -58,6 +51,6 @@ export function ErrorState({
           </pre>
         </details>
       ) : null}
-    </div>
+    </CenteredState>
   )
 }

@@ -33,7 +33,6 @@ const index: IndexEntry[] = stories.map((story) => ({
   id: story.id,
   name: story.name,
   title: story.title,
-  importPath: story.importPath,
   initialArgs: story.initialArgs,
   argTypes: inferControls(story.initialArgs, story.argTypes),
 }))

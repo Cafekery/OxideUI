@@ -1,12 +1,11 @@
-import { type ComponentPropsWithRef, useId } from 'react'
+import { useId } from 'react'
 import { Area, AreaChart as RechartsAreaChart } from 'recharts'
 import {
+  type CartesianChartProps,
   CHART_MARGIN,
-  type ChartDatum,
   ChartFrame,
   grid,
   seriesColor,
-  type TickFormatter,
   tooltip,
   xAxis,
   yAxis,
@@ -15,15 +14,9 @@ import { useChartTheme } from './use-chart-theme'
 
 export type AreaChartVariant = 'smooth' | 'step'
 
-export type AreaChartProps = Omit<ComponentPropsWithRef<'div'>, 'children'> & {
-  'aria-label': string
-  data: readonly ChartDatum[]
-  xKey: string
+export type AreaChartProps = CartesianChartProps & {
   yKey: string
-  height?: number
   variant?: AreaChartVariant
-  formatX?: TickFormatter
-  formatY?: TickFormatter
 }
 
 const CURVE: Record<AreaChartVariant, 'monotone' | 'step'> = {

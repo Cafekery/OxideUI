@@ -1,28 +1,20 @@
-import type { ComponentPropsWithRef } from 'react'
 import { Bar, BarChart as RechartsBarChart } from 'recharts'
 import {
+  type CartesianChartProps,
   CHART_MARGIN,
-  type ChartDatum,
   ChartFrame,
   type ChartSeries,
   grid,
   seriesColor,
-  type TickFormatter,
   tooltip,
   xAxis,
   yAxis,
 } from './chart-parts'
 import { useChartTheme } from './use-chart-theme'
 
-export type BarChartProps = Omit<ComponentPropsWithRef<'div'>, 'children'> & {
-  'aria-label': string
-  data: readonly ChartDatum[]
-  xKey: string
+export type BarChartProps = CartesianChartProps & {
   series: readonly ChartSeries[]
-  height?: number
   stacked?: boolean
-  formatX?: TickFormatter
-  formatY?: TickFormatter
 }
 
 const TOP_RADIUS: [number, number, number, number] = [2, 2, 0, 0]

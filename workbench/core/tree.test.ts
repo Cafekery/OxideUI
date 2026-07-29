@@ -6,7 +6,6 @@ const entry = (title: string, name: string): IndexEntry => ({
   id: `${title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}--${name.toLowerCase()}`,
   name,
   title,
-  importPath: 'src/x.stories.tsx',
   initialArgs: {},
   argTypes: {},
 })

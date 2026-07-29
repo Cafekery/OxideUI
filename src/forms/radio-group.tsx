@@ -1,7 +1,7 @@
 import { Label, RadioGroup as RadioGroupPrimitive } from 'radix-ui'
 import { type ComponentPropsWithRef, type ReactNode, useId } from 'react'
 import { cn } from '../lib/cn'
-import { Field } from './field'
+import { Field, inlineLabel } from './field'
 
 export type RadioGroupProps = ComponentPropsWithRef<typeof RadioGroupPrimitive.Root> & {
   label: string
@@ -76,10 +76,7 @@ export function RadioGroupItem({
       >
         <RadioGroupPrimitive.Indicator className="h-1.5 w-1.5 rounded-full bg-default" />
       </RadioGroupPrimitive.Item>
-      <Label.Root
-        htmlFor={id}
-        className={cn('text-sans-14', disabled ? 'text-disabled' : 'text-default')}
-      >
+      <Label.Root htmlFor={id} className={inlineLabel(disabled)}>
         {label}
       </Label.Root>
     </div>

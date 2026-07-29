@@ -61,7 +61,6 @@ describe('prepareModule', () => {
     ])
     expect(stories.map((s) => s.name)).toEqual(['Primary Large', 'With Icon'])
     expect(stories.every((s) => s.title === 'Primitives/Button')).toBe(true)
-    expect(stories[0]?.importPath).toBe(PATH)
   })
 
   it('prefers an explicit meta.title over the path-derived one', () => {
@@ -161,7 +160,6 @@ describe('prepareModule', () => {
     const story = only({ default: { component: Dummy }, Basic: { args: { size: 'sm' } } })
     const element = asElement(story, { size: 'lg' })
 
-    expect(story.component).toBe(Dummy)
     expect(element.type).toBe(Dummy)
     expect(element.props.size).toBe('lg')
   })
@@ -177,7 +175,6 @@ describe('prepareModule', () => {
     const stories = prepare({ default: {}, Broken: {} })
 
     expect(stories).toHaveLength(1)
-    expect(stories[0]?.component).toBeUndefined()
     expect(() => stories[0]?.render({})).toThrow(/primitives-button--broken/)
   })
 
@@ -187,12 +184,11 @@ describe('prepareModule', () => {
     })
 
     expect(story.id).toBe('primitives-button--basic')
-    expect(story.component).toBeUndefined()
   })
 
   it('applies the same meta component to every story in the module', () => {
     const stories = prepare({ default: { component: Other }, A: {}, B: {} })
 
-    expect(stories.map((s) => s.component)).toEqual([Other, Other])
+    expect(stories.map((s) => asElement(s).type)).toEqual([Other, Other])
   })
 })

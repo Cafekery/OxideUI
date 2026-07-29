@@ -26,6 +26,20 @@ export type ChartFrameProps = ComponentPropsWithRef<'div'> & {
   children: ReactElement
 }
 
+/** Exported only so the public prop types composed from it survive declaration
+ *  emit; kept out of the folder barrel, so it stays out of the published API. */
+export type ChartBaseProps = Omit<ComponentPropsWithRef<'div'>, 'children'> & {
+  'aria-label': string
+  data: readonly ChartDatum[]
+  height?: number
+}
+
+export type CartesianChartProps = ChartBaseProps & {
+  xKey: string
+  formatX?: TickFormatter
+  formatY?: TickFormatter
+}
+
 /** The container carries the accessible name; everything recharts draws is
  *  hidden, and `accessibilityLayer` is off so the SVG is neither focusable nor
  *  announced as an application. */

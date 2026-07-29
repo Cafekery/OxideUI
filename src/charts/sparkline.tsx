@@ -1,13 +1,9 @@
-import type { ComponentPropsWithRef } from 'react'
 import { Line, LineChart } from 'recharts'
-import { type ChartDatum, ChartFrame, seriesColor } from './chart-parts'
+import { type ChartBaseProps, ChartFrame, seriesColor } from './chart-parts'
 import { useChartTheme } from './use-chart-theme'
 
-export type SparklineProps = Omit<ComponentPropsWithRef<'div'>, 'children'> & {
-  'aria-label': string
-  data: readonly ChartDatum[]
+export type SparklineProps = ChartBaseProps & {
   yKey: string
-  height?: number
   color?: string
 }
 

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { observeTheme } from '../lib/observe-theme'
 
 export type ChartTheme = {
   grid: string
@@ -46,11 +47,7 @@ const readTheme = (): ChartTheme => {
 export function useChartTheme(): ChartTheme {
   const [theme, setTheme] = useState(readTheme)
 
-  useEffect(() => {
-    const observer = new MutationObserver(() => setTheme(readTheme()))
-    observer.observe(document.documentElement, { attributeFilter: ['data-theme'] })
-    return () => observer.disconnect()
-  }, [])
+  useEffect(() => observeTheme(() => setTheme(readTheme())), [])
 
   return theme
 }

@@ -1,6 +1,6 @@
 import type { ComponentPropsWithRef } from 'react'
 import { cn } from '../lib/cn'
-import { Spinner, type SpinnerSize } from './spinner'
+import { Spinner } from './spinner'
 
 export type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger' | 'notice'
 export type ButtonSize = 'sm' | 'base'
@@ -31,11 +31,6 @@ const SQUARE: Record<ButtonSize, string> = {
   base: 'h-10 w-10',
 }
 
-const SPINNER: Record<ButtonSize, SpinnerSize> = {
-  sm: 'sm',
-  base: 'base',
-}
-
 export type ButtonProps = ComponentPropsWithRef<'button'> & {
   variant?: ButtonVariant
   size?: ButtonSize
@@ -62,7 +57,7 @@ export function Button({
     >
       {loading ? (
         <>
-          <Spinner size={SPINNER[size]} className="absolute inset-0 m-auto" />
+          <Spinner size={size} className="absolute inset-0 m-auto" />
           <span className="invisible inline-flex items-center gap-2">{children}</span>
         </>
       ) : (
@@ -97,7 +92,7 @@ export function IconButton({
       className={cn(BASE, VARIANT[variant], SQUARE[size], className)}
       {...rest}
     >
-      {loading ? <Spinner size={SPINNER[size]} /> : children}
+      {loading ? <Spinner size={size} /> : children}
     </button>
   )
 }
