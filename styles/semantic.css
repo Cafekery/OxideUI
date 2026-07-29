@@ -1,0 +1,314 @@
+/* Semantic roles: surface (backgrounds), content (text/icons), stroke (borders).
+   Dark is the default; `[data-theme='light']` overrides it.
+
+   Accent is the one swappable hue. Re-point the twelve `--accent-*` steps and
+   every accent surface, text and border follows. */
+
+:root {
+  --accent-200: var(--color-green-200);
+  --accent-300: var(--color-green-300);
+  --accent-400: var(--color-green-400);
+  --accent-500: var(--color-green-500);
+  --accent-600: var(--color-green-600);
+  --accent-700: var(--color-green-700);
+  --accent-800: var(--color-green-800);
+  --accent-900: var(--color-green-900);
+  --accent-1000: var(--color-green-1000);
+  --accent-1100: var(--color-green-1100);
+  --accent-1200: var(--color-green-1200);
+  --accent-1300: var(--color-green-1300);
+}
+
+:root {
+  /* surfaces */
+  --surface-default: var(--color-neutral-0);
+  --surface-hover: var(--color-neutral-200);
+  --surface-raise: var(--color-neutral-50);
+  --surface-secondary: var(--color-neutral-100);
+  --surface-tertiary: var(--color-neutral-300);
+  --surface-disabled: var(--color-neutral-100);
+  --surface-scrim: oklch(0 0 0 / 0.6);
+  --surface-accent-inverse: var(--accent-800);
+  --surface-accent: var(--accent-200);
+  --surface-accent-hover: var(--accent-300);
+  --surface-accent-secondary: var(--accent-400);
+  --surface-accent-alt-inverse: var(--color-purple-800);
+  --surface-accent-alt: var(--color-purple-200);
+  --surface-accent-alt-hover: var(--color-purple-300);
+  --surface-accent-alt-secondary: var(--color-purple-400);
+  --surface-destructive-inverse: var(--color-red-800);
+  --surface-destructive: var(--color-red-200);
+  --surface-destructive-hover: var(--color-red-300);
+  --surface-destructive-secondary: var(--color-red-400);
+  --surface-notice-inverse: var(--color-yellow-800);
+  --surface-notice: var(--color-yellow-200);
+  --surface-notice-hover: var(--color-yellow-300);
+  --surface-notice-secondary: var(--color-yellow-400);
+  --surface-error-inverse: var(--color-red-800);
+  --surface-error: var(--color-red-200);
+  --surface-error-hover: var(--color-red-300);
+  --surface-error-secondary: var(--color-red-400);
+  --surface-info-inverse: var(--color-blue-800);
+  --surface-info: var(--color-blue-200);
+  --surface-info-hover: var(--color-blue-300);
+  --surface-info-secondary: var(--color-blue-400);
+  --surface-inverse-raise: var(--content-raise);
+  --surface-inverse-primary: var(--content-default);
+  --surface-inverse-secondary: var(--content-secondary);
+
+  /* content */
+  --content-raise: var(--color-neutral-900);
+  --content-default: var(--color-neutral-800);
+  --content-secondary: var(--color-neutral-700);
+  --content-tertiary: var(--color-neutral-600);
+  --content-quaternary: var(--color-neutral-500);
+  --content-disabled: var(--color-neutral-500);
+  --content-accent: var(--accent-800);
+  --content-accent-secondary: var(--accent-700);
+  --content-accent-tertiary: var(--accent-600);
+  --content-accent-disabled: var(--accent-500);
+  --content-accent-alt: var(--color-purple-800);
+  --content-accent-alt-secondary: var(--color-purple-700);
+  --content-accent-alt-tertiary: var(--color-purple-600);
+  --content-accent-alt-disabled: var(--color-purple-500);
+  --content-destructive: var(--color-red-800);
+  --content-destructive-secondary: var(--color-red-700);
+  --content-destructive-tertiary: var(--color-red-600);
+  --content-destructive-disabled: var(--color-red-500);
+  --content-success: var(--color-green-800);
+  --content-success-secondary: var(--color-green-700);
+  --content-success-tertiary: var(--color-green-600);
+  --content-success-disabled: var(--color-green-500);
+  --content-error: var(--color-red-800);
+  --content-error-secondary: var(--color-red-700);
+  --content-error-tertiary: var(--color-red-600);
+  --content-error-disabled: var(--color-red-500);
+  --content-notice: var(--color-yellow-800);
+  --content-notice-secondary: var(--color-yellow-700);
+  --content-notice-tertiary: var(--color-yellow-600);
+  --content-notice-disabled: var(--color-yellow-500);
+  --content-info: var(--color-blue-800);
+  --content-info-secondary: var(--color-blue-700);
+  --content-info-tertiary: var(--color-blue-600);
+  --content-info-disabled: var(--color-blue-500);
+  --content-inverse: var(--surface-default);
+  --content-inverse-raise: var(--surface-raise);
+  --content-inverse-secondary: var(--surface-secondary);
+
+  /* strokes */
+  --stroke-default: var(--color-neutral-300);
+  --stroke-raise: var(--color-neutral-400);
+  --stroke-secondary: var(--color-neutral-200);
+  --stroke-tertiary: var(--color-neutral-100);
+  --stroke-surface: var(--surface-default);
+  --stroke-accent: var(--accent-800);
+  --stroke-accent-secondary: var(--accent-600);
+  --stroke-accent-tertiary: var(--accent-400);
+  --stroke-accent-quaternary: var(--accent-300);
+  --stroke-accent-alt: var(--color-purple-800);
+  --stroke-accent-alt-secondary: var(--color-purple-600);
+  --stroke-accent-alt-tertiary: var(--color-purple-400);
+  --stroke-accent-alt-quaternary: var(--color-purple-300);
+  --stroke-destructive: var(--color-red-800);
+  --stroke-destructive-secondary: var(--color-red-600);
+  --stroke-destructive-tertiary: var(--color-red-400);
+  --stroke-destructive-quaternary: var(--color-red-300);
+  --stroke-success: var(--color-green-800);
+  --stroke-success-secondary: var(--color-green-600);
+  --stroke-success-tertiary: var(--color-green-400);
+  --stroke-success-quaternary: var(--color-green-300);
+  --stroke-error: var(--color-red-800);
+  --stroke-error-secondary: var(--color-red-600);
+  --stroke-error-tertiary: var(--color-red-400);
+  --stroke-error-quaternary: var(--color-red-300);
+  --stroke-notice: var(--color-yellow-800);
+  --stroke-notice-secondary: var(--color-yellow-600);
+  --stroke-notice-tertiary: var(--color-yellow-400);
+  --stroke-notice-quaternary: var(--color-yellow-300);
+  --stroke-info: var(--color-blue-800);
+  --stroke-info-secondary: var(--color-blue-600);
+  --stroke-info-tertiary: var(--color-blue-400);
+  --stroke-info-quaternary: var(--color-blue-300);
+
+  --shadow-border-base: 0 0 0 1px #ffffff0d;
+  --shadow-border-bg: 0 0 0 1px var(--surface-secondary);
+  --shadow-border: var(--shadow-border-base), var(--shadow-border-bg);
+  --shadow-small: 0px 1px 2px #00000029;
+  --shadow-border-small:
+    var(--shadow-border-base), var(--shadow-small), var(--shadow-border-bg);
+  --shadow-medium: 0px 2px 2px #00000052, 0px 8px 8px -8px #00000029;
+  --shadow-border-medium:
+    var(--shadow-border-base), var(--shadow-medium), var(--shadow-border-bg);
+  --shadow-large: 0px 2px 2px #0000000a, 0px 8px 16px -4px #0000000a;
+  --shadow-border-large:
+    var(--shadow-border-base), var(--shadow-large), var(--shadow-border-bg);
+  --shadow-menu:
+    var(--shadow-border-base), 0px 1px 1px #00000005,
+    0px 4px 8px -4px #0000000a, 0px 16px 24px -8px #0000000f,
+    var(--shadow-border-bg);
+  --shadow-menu-inset:
+    0px 1px 1px #00000005, 0px 4px 8px -4px #0000000a, 0px 16px 24px -8px #0000000f;
+  --inset-outline: 1px solid #ffffff15;
+  --shadow-toast:
+    0px 1px 1px #00000005, 0px 4px 8px -4px #0000000a, 0px 16px 24px -8px #0000000f;
+  --shadow-modal:
+    var(--shadow-border-base), 0px 1px 1px #00000005,
+    0px 8px 16px -4px #0000000a, 0px 24px 32px -8px #0000000f,
+    var(--shadow-border-bg);
+  --shadow-tooltip:
+    var(--shadow-border-base), 0px 1px 1px #00000005, 0px 4px 8px #0000000a,
+    var(--shadow-border-bg);
+
+  --z-popover: 10;
+  --z-top-bar: 15;
+  --z-top-bar-dropdown: 20;
+  --z-side-modal-overlay: 25;
+  --z-side-modal: 30;
+  --z-modal-overlay: 35;
+  --z-modal: 40;
+  --z-modal-dropdown: 50;
+  --z-toast: 50;
+
+  --transition-default: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="light"] {
+  /* surfaces */
+  --surface-default: var(--color-neutral-1300);
+  --surface-hover: var(--color-neutral-1100);
+  --surface-raise: var(--color-neutral-1200);
+  --surface-secondary: var(--color-neutral-1100);
+  --surface-tertiary: var(--color-neutral-1000);
+  --surface-disabled: var(--color-neutral-1100);
+  --surface-scrim: oklch(0.162 0.01 260 / 0.1);
+  --surface-accent-inverse: var(--accent-800);
+  --surface-accent: var(--accent-1200);
+  --surface-accent-hover: var(--accent-1100);
+  --surface-accent-secondary: var(--accent-1000);
+  --surface-accent-alt-inverse: var(--color-purple-800);
+  --surface-accent-alt: var(--color-purple-1200);
+  --surface-accent-alt-hover: var(--color-purple-1100);
+  --surface-accent-alt-secondary: var(--color-purple-1000);
+  --surface-destructive-inverse: var(--color-red-800);
+  --surface-destructive: var(--color-red-1200);
+  --surface-destructive-hover: var(--color-red-1100);
+  --surface-destructive-secondary: var(--color-red-1000);
+  --surface-notice-inverse: var(--color-yellow-800);
+  --surface-notice: var(--color-yellow-1200);
+  --surface-notice-hover: var(--color-yellow-1100);
+  --surface-notice-secondary: var(--color-yellow-1000);
+  --surface-error-inverse: var(--color-red-800);
+  --surface-error: var(--color-red-1200);
+  --surface-error-hover: var(--color-red-1100);
+  --surface-error-secondary: var(--color-red-1000);
+  --surface-info-inverse: var(--color-blue-800);
+  --surface-info: var(--color-blue-1200);
+  --surface-info-hover: var(--color-blue-1100);
+  --surface-info-secondary: var(--color-blue-1000);
+  --surface-inverse-raise: var(--content-raise);
+  --surface-inverse-primary: var(--content-default);
+  --surface-inverse-secondary: var(--content-secondary);
+
+  /* content */
+  --content-raise: var(--color-neutral-0);
+  --content-default: var(--color-neutral-300);
+  --content-secondary: var(--color-neutral-500);
+  --content-tertiary: var(--color-neutral-600);
+  --content-quaternary: var(--color-neutral-800);
+  --content-disabled: var(--color-neutral-1000);
+  --content-accent: var(--accent-500);
+  --content-accent-secondary: var(--accent-600);
+  --content-accent-tertiary: var(--accent-700);
+  --content-accent-disabled: var(--accent-1000);
+  --content-accent-alt: var(--color-purple-500);
+  --content-accent-alt-secondary: var(--color-purple-600);
+  --content-accent-alt-tertiary: var(--color-purple-700);
+  --content-accent-alt-disabled: var(--color-purple-1000);
+  --content-destructive: var(--color-red-500);
+  --content-destructive-secondary: var(--color-red-600);
+  --content-destructive-tertiary: var(--color-red-700);
+  --content-destructive-disabled: var(--color-red-1000);
+  --content-success: var(--color-green-500);
+  --content-success-secondary: var(--color-green-600);
+  --content-success-tertiary: var(--color-green-700);
+  --content-success-disabled: var(--color-green-1000);
+  --content-error: var(--color-red-500);
+  --content-error-secondary: var(--color-red-600);
+  --content-error-tertiary: var(--color-red-700);
+  --content-error-disabled: var(--color-red-1000);
+  --content-notice: var(--color-yellow-500);
+  --content-notice-secondary: var(--color-yellow-600);
+  --content-notice-tertiary: var(--color-yellow-700);
+  --content-notice-disabled: var(--color-yellow-1000);
+  --content-info: var(--color-blue-500);
+  --content-info-secondary: var(--color-blue-600);
+  --content-info-tertiary: var(--color-blue-700);
+  --content-info-disabled: var(--color-blue-1000);
+  --content-inverse: var(--surface-default);
+  --content-inverse-raise: var(--surface-raise);
+  --content-inverse-secondary: var(--surface-secondary);
+
+  /* strokes */
+  --stroke-default: var(--color-neutral-900);
+  --stroke-raise: var(--color-neutral-800);
+  --stroke-secondary: var(--color-neutral-1000);
+  --stroke-tertiary: var(--color-neutral-1100);
+  --stroke-surface: var(--surface-default);
+  --stroke-accent: var(--accent-800);
+  --stroke-accent-secondary: var(--accent-900);
+  --stroke-accent-tertiary: var(--accent-1000);
+  --stroke-accent-quaternary: var(--accent-1100);
+  --stroke-accent-alt: var(--color-purple-800);
+  --stroke-accent-alt-secondary: var(--color-purple-900);
+  --stroke-accent-alt-tertiary: var(--color-purple-1000);
+  --stroke-accent-alt-quaternary: var(--color-purple-1100);
+  --stroke-destructive: var(--color-red-800);
+  --stroke-destructive-secondary: var(--color-red-900);
+  --stroke-destructive-tertiary: var(--color-red-1000);
+  --stroke-destructive-quaternary: var(--color-red-1100);
+  --stroke-success: var(--color-green-800);
+  --stroke-success-secondary: var(--color-green-600);
+  --stroke-success-tertiary: var(--color-green-400);
+  --stroke-success-quaternary: var(--color-green-300);
+  --stroke-error: var(--color-red-800);
+  --stroke-error-secondary: var(--color-red-900);
+  --stroke-error-tertiary: var(--color-red-1100);
+  --stroke-error-quaternary: var(--color-red-1100);
+  --stroke-notice: var(--color-yellow-800);
+  --stroke-notice-secondary: var(--color-yellow-900);
+  --stroke-notice-tertiary: var(--color-yellow-1000);
+  --stroke-notice-quaternary: var(--color-yellow-1100);
+  --stroke-info: var(--color-blue-800);
+  --stroke-info-secondary: var(--color-blue-900);
+  --stroke-info-tertiary: var(--color-blue-1000);
+  --stroke-info-quaternary: var(--color-blue-1100);
+
+  --shadow-border-base: 0 0 0 1px #00000014;
+  --shadow-border-bg: 0 0 0 1px var(--surface-secondary);
+  --shadow-border: var(--shadow-border-base), var(--shadow-border-bg);
+  --shadow-small: 0px 2px 2px #0000000a;
+  --shadow-border-small:
+    var(--shadow-border-base), var(--shadow-small), var(--shadow-border-bg);
+  --shadow-medium: 0px 2px 2px #0000000a, 0px 8px 8px -8px #0000000a;
+  --shadow-border-medium:
+    var(--shadow-border-base), var(--shadow-medium), var(--shadow-border-bg);
+  --shadow-large: 0px 2px 2px #0000000a, 0px 8px 16px -4px #0000000a;
+  --shadow-border-large:
+    var(--shadow-border-base), var(--shadow-large), var(--shadow-border-bg);
+  --shadow-menu:
+    var(--shadow-border-base), 0px 1px 1px #00000005,
+    0px 4px 8px -4px #0000000a, 0px 16px 24px -8px #0000000f,
+    var(--shadow-border-bg);
+  --shadow-menu-inset:
+    0px 1px 1px #00000005, 0px 4px 8px -4px #0000000a, 0px 16px 24px -8px #0000000f;
+  --inset-outline: 1px solid #00000015;
+  --shadow-toast:
+    0px 1px 1px #00000005, 0px 4px 8px -4px #0000000a, 0px 16px 24px -8px #0000000f;
+  --shadow-modal:
+    var(--shadow-border-base), 0px 1px 1px #00000005,
+    0px 8px 16px -4px #0000000a, 0px 24px 32px -8px #0000000f,
+    var(--shadow-border-bg);
+  --shadow-tooltip:
+    var(--shadow-border-base), 0px 1px 1px #00000005, 0px 4px 8px #0000000a,
+    var(--shadow-border-bg);
+}

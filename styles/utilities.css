@@ -1,0 +1,584 @@
+/* Semantic utilities.
+
+   Three namespaces share short names because they never mean the same thing:
+   `bg-*` reads the surface role, `text-*` the content role, `border-*`/`ring-*`/
+   `outline-*` the stroke role. That overlap is why these are hand-declared
+   instead of generated from `@theme` colors.
+
+   Consequence: slash-opacity (`text-accent/40`) compiles to NOTHING on these —
+   Tailwind only supports the modifier on theme colors. Reach for the explicit
+   `-secondary` / `-tertiary` / `-disabled` step instead. `bun run lint:css`
+   fails the build if a slash modifier slips in. */
+
+@utility bg-default {
+  background-color: var(--surface-default);
+}
+@utility bg-raise {
+  background-color: var(--surface-raise);
+}
+@utility bg-secondary {
+  background-color: var(--surface-secondary);
+}
+@utility bg-tertiary {
+  background-color: var(--surface-tertiary);
+}
+@utility bg-hover {
+  background-color: var(--surface-hover);
+}
+@utility bg-disabled {
+  background-color: var(--surface-disabled);
+}
+@utility bg-scrim {
+  background-color: var(--surface-scrim);
+}
+@utility bg-accent {
+  background-color: var(--surface-accent);
+}
+@utility bg-accent-hover {
+  background-color: var(--surface-accent-hover);
+}
+@utility bg-notice-hover {
+  background-color: var(--surface-notice-hover);
+}
+@utility bg-error-hover {
+  background-color: var(--surface-error-hover);
+}
+@utility bg-accent-secondary {
+  background-color: var(--surface-accent-secondary);
+}
+@utility bg-accent-inverse {
+  background-color: var(--surface-accent-inverse);
+}
+@utility bg-accent-alt {
+  background-color: var(--surface-accent-alt);
+}
+@utility bg-accent-alt-hover {
+  background-color: var(--surface-accent-alt-hover);
+}
+@utility bg-accent-alt-inverse {
+  background-color: var(--surface-accent-alt-inverse);
+}
+@utility bg-destructive {
+  background-color: var(--surface-destructive);
+}
+@utility bg-destructive-inverse {
+  background-color: var(--surface-destructive-inverse);
+}
+@utility bg-destructive-secondary {
+  background-color: var(--surface-destructive-secondary);
+}
+@utility bg-error {
+  background-color: var(--surface-error);
+}
+@utility bg-error-inverse {
+  background-color: var(--surface-error-inverse);
+}
+@utility bg-error-secondary {
+  background-color: var(--surface-error-secondary);
+}
+@utility bg-notice {
+  background-color: var(--surface-notice);
+}
+@utility bg-notice-inverse {
+  background-color: var(--surface-notice-inverse);
+}
+@utility bg-notice-secondary {
+  background-color: var(--surface-notice-secondary);
+}
+@utility bg-info {
+  background-color: var(--surface-info);
+}
+@utility bg-info-hover {
+  background-color: var(--surface-info-hover);
+}
+@utility bg-info-inverse {
+  background-color: var(--surface-info-inverse);
+}
+@utility bg-info-secondary {
+  background-color: var(--surface-info-secondary);
+}
+@utility bg-inverse {
+  background-color: var(--surface-inverse-primary);
+}
+
+@utility text-default {
+  color: var(--content-default);
+}
+@utility text-raise {
+  color: var(--content-raise);
+}
+@utility text-secondary {
+  color: var(--content-secondary);
+}
+@utility text-tertiary {
+  color: var(--content-tertiary);
+}
+@utility text-quaternary {
+  color: var(--content-quaternary);
+}
+@utility text-disabled {
+  color: var(--content-disabled);
+}
+@utility text-accent {
+  color: var(--content-accent);
+}
+@utility text-accent-secondary {
+  color: var(--content-accent-secondary);
+}
+@utility text-accent-tertiary {
+  color: var(--content-accent-tertiary);
+}
+@utility text-accent-alt {
+  color: var(--content-accent-alt);
+}
+@utility text-destructive {
+  color: var(--content-destructive);
+}
+@utility text-success {
+  color: var(--content-success);
+}
+@utility text-error {
+  color: var(--content-error);
+}
+@utility text-error-secondary {
+  color: var(--content-error-secondary);
+}
+@utility text-notice {
+  color: var(--content-notice);
+}
+@utility text-info {
+  color: var(--content-info);
+}
+@utility text-accent-disabled {
+  color: var(--content-accent-disabled);
+}
+@utility text-accent-alt-disabled {
+  color: var(--content-accent-alt-disabled);
+}
+@utility text-destructive-disabled {
+  color: var(--content-destructive-disabled);
+}
+@utility text-error-disabled {
+  color: var(--content-error-disabled);
+}
+@utility text-info-disabled {
+  color: var(--content-info-disabled);
+}
+@utility text-notice-disabled {
+  color: var(--content-notice-disabled);
+}
+@utility text-success-disabled {
+  color: var(--content-success-disabled);
+}
+@utility text-inverse {
+  color: var(--content-inverse);
+}
+
+@utility border-default {
+  border-color: var(--stroke-default);
+}
+@utility border-raise {
+  border-color: var(--stroke-raise);
+}
+@utility border-secondary {
+  border-color: var(--stroke-secondary);
+}
+@utility border-tertiary {
+  border-color: var(--stroke-tertiary);
+}
+@utility border-accent {
+  border-color: var(--stroke-accent);
+}
+@utility border-accent-secondary {
+  border-color: var(--stroke-accent-secondary);
+}
+@utility border-accent-tertiary {
+  border-color: var(--stroke-accent-tertiary);
+}
+@utility border-accent-quaternary {
+  border-color: var(--stroke-accent-quaternary);
+}
+@utility border-error {
+  border-color: var(--stroke-error);
+}
+@utility border-error-secondary {
+  border-color: var(--stroke-error-secondary);
+}
+@utility border-notice {
+  border-color: var(--stroke-notice);
+}
+@utility border-info {
+  border-color: var(--stroke-info);
+}
+@utility border-info-secondary {
+  border-color: var(--stroke-info-secondary);
+}
+@utility border-success {
+  border-color: var(--stroke-success);
+}
+
+@utility ring-default {
+  --tw-ring-color: var(--stroke-default);
+}
+@utility ring-accent {
+  --tw-ring-color: var(--stroke-accent);
+}
+@utility ring-error {
+  --tw-ring-color: var(--stroke-error);
+}
+@utility ring-notice {
+  --tw-ring-color: var(--stroke-notice);
+}
+@utility ring-info {
+  --tw-ring-color: var(--stroke-info);
+}
+@utility outline-accent {
+  outline-color: var(--stroke-accent);
+}
+@utility outline-default {
+  outline-color: var(--stroke-default);
+}
+
+@utility scroll-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--surface-tertiary) transparent;
+  &::-webkit-scrollbar {
+    width: 11px;
+    height: 11px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--surface-tertiary);
+    background-clip: padding-box;
+    border: 3px solid transparent;
+    border-radius: 9999px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: color-mix(in oklch, var(--surface-tertiary), white 18%);
+  }
+}
+
+@utility table-pinned {
+  & :is(thead, tbody) > tr > :first-child {
+    position: sticky;
+    left: 0;
+  }
+  & tbody > tr > td:first-child {
+    background: var(--surface-default);
+    z-index: 11;
+  }
+  & thead > tr > th:first-child {
+    z-index: 31;
+  }
+
+  & .table-action-col {
+    position: sticky;
+    right: 0;
+  }
+  & tbody > tr > td.table-action-col {
+    background: var(--surface-default);
+    z-index: 11;
+  }
+  & thead > tr > th.table-action-col {
+    z-index: 31;
+  }
+
+  & tbody > tr:is([data-selected], :focus-visible) > td {
+    background: var(--surface-accent-secondary);
+  }
+  & tbody > tr:not([data-selected]):not(:focus-visible):hover > td {
+    background: var(--surface-hover);
+  }
+
+  &[data-at-start="false"] :is(thead, tbody) > tr > :first-child {
+    box-shadow:
+      9px 0 8px -5px oklch(0 0 0 / 0.5),
+      inset -1px 0 0 0 var(--stroke-secondary);
+  }
+  &[data-at-end="false"] :is(thead, tbody) > tr > .table-action-col {
+    box-shadow: -9px 0 8px -5px oklch(0 0 0 / 0.5);
+  }
+}
+
+@utility shadow-border {
+  box-shadow: var(--shadow-border);
+}
+@utility shadow-border-small {
+  box-shadow: var(--shadow-border-small);
+}
+@utility shadow-border-medium {
+  box-shadow: var(--shadow-border-medium);
+}
+@utility shadow-border-large {
+  box-shadow: var(--shadow-border-large);
+}
+@utility shadow-menu {
+  box-shadow: var(--shadow-menu);
+}
+@utility shadow-menu-inset {
+  box-shadow: var(--shadow-menu-inset);
+  outline: var(--inset-outline);
+  outline-offset: -1px;
+}
+@utility shadow-toast {
+  box-shadow: var(--shadow-toast);
+}
+@utility shadow-modal {
+  box-shadow: var(--shadow-modal);
+}
+@utility shadow-tooltip {
+  box-shadow: var(--shadow-tooltip);
+}
+
+@utility text-mono-xs {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  line-height: 1rem;
+  font-size: 0.6875rem;
+  letter-spacing: 0.04rem;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings:
+    "ss02" on,
+    "ss03" on,
+    "ss09" on,
+    "ss06" on,
+    "ss07" on,
+    "ss08" on,
+    "calt" off;
+}
+@utility text-mono-sm {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  line-height: 1rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.04rem;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings:
+    "ss02" on,
+    "ss03" on,
+    "ss09" on,
+    "ss06" on,
+    "ss07" on,
+    "ss08" on,
+    "calt" off;
+}
+@utility text-mono-code {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  line-height: 1rem;
+  font-size: 0.75rem;
+  letter-spacing: 0rem;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings:
+    "ss02" on,
+    "ss03" on,
+    "ss09" on,
+    "ss06" on,
+    "ss07" on,
+    "ss08" on,
+    "calt" off;
+}
+@utility text-mono-md {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  line-height: 1.25rem;
+  font-size: 0.875rem;
+  letter-spacing: 0.04rem;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings:
+    "ss02" on,
+    "ss03" on,
+    "ss09" on,
+    "ss06" on,
+    "ss07" on,
+    "ss08" on,
+    "calt" off;
+}
+
+@utility text-sans-11 {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  line-height: 135%;
+  font-size: 0.6875rem;
+  letter-spacing: 0.049em;
+}
+@utility text-sans-12 {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  line-height: 1rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.042em;
+}
+@utility text-sans-14 {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  line-height: 1.125rem;
+  font-size: 0.875rem;
+  letter-spacing: 0.03em;
+}
+@utility text-sans-16 {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  line-height: 1.375rem;
+  font-size: 1rem;
+  letter-spacing: 0.021em;
+}
+@utility text-sans-18 {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  line-height: 1.5rem;
+  font-size: 1.125rem;
+  letter-spacing: 0.014em;
+}
+@utility text-sans-20 {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  line-height: 130%;
+  font-size: 1.25rem;
+  letter-spacing: 0.009em;
+}
+@utility text-sans-22 {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  line-height: 130%;
+  font-size: 1.375rem;
+  letter-spacing: 0.004em;
+}
+@utility text-sans-25 {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  line-height: 2rem;
+  font-size: 1.5625rem;
+  letter-spacing: 0em;
+}
+@utility text-sans-28 {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  line-height: 120%;
+  font-size: 1.75rem;
+  letter-spacing: -0.005em;
+}
+@utility text-sans-36 {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  line-height: 2.625rem;
+  font-size: 2.25rem;
+  letter-spacing: -0.013em;
+}
+@utility text-sans-50 {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  line-height: 110%;
+  font-size: 3.125rem;
+  letter-spacing: -0.02em;
+}
+@utility text-sans-52 {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  line-height: 3.625rem;
+  font-size: 3.25rem;
+  letter-spacing: -0.021em;
+}
+@utility text-sans-65 {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  line-height: 3.65625rem;
+  font-size: 4.0625rem;
+  letter-spacing: -0.025em;
+}
+
+@utility text-sans-sm {
+  @apply text-sans-12;
+}
+@utility text-sans-md {
+  @apply text-sans-14;
+}
+@utility text-sans-lg {
+  @apply text-sans-16;
+}
+@utility text-sans-xl {
+  @apply text-sans-18;
+}
+@utility text-sans-2xl {
+  @apply text-sans-25;
+}
+@utility text-sans-3xl {
+  @apply text-sans-36;
+}
+@utility text-sans-4xl {
+  @apply text-sans-52;
+}
+@utility text-sans-5xl {
+  @apply text-sans-65;
+}
+
+@utility heading-display {
+  @apply text-sans-36;
+  @media (min-width: 800px) {
+    @apply text-sans-52;
+  }
+  @media (min-width: 1000px) {
+    @apply text-sans-65;
+  }
+}
+@utility heading-xl {
+  @apply text-sans-25;
+  @media (min-width: 600px) {
+    @apply text-sans-36;
+  }
+  @media (min-width: 1000px) {
+    @apply text-sans-52;
+  }
+}
+@utility heading-lg {
+  @apply text-sans-18;
+  @media (min-width: 600px) {
+    @apply text-sans-25;
+  }
+  @media (min-width: 1000px) {
+    @apply text-sans-36;
+  }
+}
+@utility heading-md {
+  @apply text-sans-16;
+  @media (min-width: 600px) {
+    @apply text-sans-18;
+  }
+  @media (min-width: 1000px) {
+    @apply text-sans-25;
+  }
+}
+
+@utility text-sans-semi-sm {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  line-height: 1rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.04rem;
+}
+@utility text-sans-semi-md {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  line-height: 1.125rem;
+  font-size: 0.875rem;
+  letter-spacing: 0.03rem;
+}
+@utility text-sans-semi-lg {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  line-height: 1.375rem;
+  font-size: 1rem;
+  letter-spacing: 0.0175rem;
+}
+@utility text-sans-semi-xl {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  line-height: 1.5rem;
+  font-size: 1.125rem;
+  letter-spacing: 0.0125rem;
+}

@@ -1,0 +1,10 @@
+node_modules
+dist
+gallery-dist
+*.tsbuildinfo
+.DS_Store
+
+# local planning artefacts, never committed
+blueprint.md
+CONTRACT.md
+BUILD_REPORT.md

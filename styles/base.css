@@ -1,0 +1,43 @@
+@layer base {
+  html,
+  body {
+    background-color: var(--surface-default);
+    color: var(--content-default);
+    overscroll-behavior: none;
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    line-height: 1.4;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background-color: var(--surface-accent);
+    color: var(--content-accent);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--stroke-accent-secondary);
+    outline-offset: 1px;
+  }
+
+  input[type="search"]::-webkit-search-cancel-button,
+  input[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+    appearance: none;
+  }
+}
+
+/* Sonner animates height/transform itself; match the token motion duration.
+   Doubled attribute selector outranks the library's own rule without !important. */
+[data-sonner-toast][data-sonner-toast] {
+  transition:
+    transform 200ms,
+    opacity 200ms,
+    height 200ms,
+    box-shadow 200ms;
+}

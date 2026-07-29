@@ -1,0 +1,125 @@
+/* Palette, type scale, radii and layout constants.
+   Values are generated from the OKLCH source; edit the generator, not these. */
+
+/* Drop Tailwind's stock palette and radii so only design-system tokens
+   resolve as utilities — an unmapped `bg-slate-500` should fail loudly. */
+@theme {
+  --color-*: initial;
+  --radius-*: initial;
+}
+
+@theme {
+  --font-sans: var(
+    --oxide-font-sans,
+    ui-sans-serif,
+    -apple-system,
+    BlinkMacSystemFont,
+    Helvetica,
+    Arial,
+    sans-serif
+  );
+  --font-mono: var(
+    --oxide-font-mono,
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Consolas,
+    monospace
+  );
+
+  --color-neutral-1300: oklch(0.995 0.0001 260);
+  --color-neutral-1200: oklch(0.975 0.0001 260);
+  --color-neutral-1100: oklch(0.95 0.0001 260);
+  --color-neutral-1000: oklch(0.925 0.0001 260);
+  --color-neutral-900: oklch(0.9 0.0001 260);
+  --color-neutral-800: oklch(0.79 0.0011 260);
+  --color-neutral-700: oklch(0.717 0.0021 260);
+  --color-neutral-600: oklch(0.606 0.0031 260);
+  --color-neutral-500: oklch(0.483 0.0041 260);
+  --color-neutral-400: oklch(0.389 0.005 260);
+  --color-neutral-300: oklch(0.316 0.006 260);
+  --color-neutral-200: oklch(0.247 0.007 260);
+  --color-neutral-100: oklch(0.216 0.008 260);
+  --color-neutral-50: oklch(0.195 0.009 260);
+  --color-neutral-0: oklch(0.162 0.01 260);
+
+  /* Blue scale */
+  --color-blue-1300: oklch(0.95 0.0194 272);
+  --color-blue-1200: oklch(0.922 0.039 272);
+  --color-blue-1100: oklch(0.892 0.0598 272);
+  --color-blue-1000: oklch(0.852 0.088 272);
+  --color-blue-900: oklch(0.825 0.109 272);
+  --color-blue-800: oklch(0.71 0.15 272);
+  --color-blue-700: oklch(0.67 0.1216 275.3);
+  --color-blue-600: oklch(0.563 0.1139 278.7);
+  --color-blue-500: oklch(0.474 0.0984 282);
+  --color-blue-400: oklch(0.379 0.0776 285.3);
+  --color-blue-300: oklch(0.308 0.0623 288.7);
+  --color-blue-200: oklch(0.24 0.0479 292);
+
+  /* Purple scale */
+  --color-purple-1300: oklch(0.95 0.0226 305.4);
+  --color-purple-1200: oklch(0.922 0.0455 305.4);
+  --color-purple-1100: oklch(0.892 0.0697 305.4);
+  --color-purple-1000: oklch(0.852 0.1027 305.4);
+  --color-purple-900: oklch(0.825 0.1271 305.4);
+  --color-purple-800: oklch(0.74 0.175 305.4);
+  --color-purple-700: oklch(0.67 0.1419 308.7);
+  --color-purple-600: oklch(0.563 0.1328 312.1);
+  --color-purple-500: oklch(0.474 0.1148 315.4);
+  --color-purple-400: oklch(0.379 0.0906 318.7);
+  --color-purple-300: oklch(0.308 0.0727 322.1);
+  --color-purple-200: oklch(0.24 0.0559 325.4);
+
+  /* Red scale */
+  --color-red-1300: oklch(0.95 0.0253 11.3);
+  --color-red-1200: oklch(0.922 0.0509 11.3);
+  --color-red-1100: oklch(0.892 0.078 11.3);
+  --color-red-1000: oklch(0.852 0.1149 11.3);
+  --color-red-900: oklch(0.825 0.1423 11.3);
+  --color-red-800: oklch(0.712 0.185 11.3);
+  --color-red-700: oklch(0.67 0.1588 14.7);
+  --color-red-600: oklch(0.563 0.1487 18);
+  --color-red-500: oklch(0.474 0.1285 21.3);
+  --color-red-400: oklch(0.379 0.1014 24.7);
+  --color-red-300: oklch(0.308 0.0814 28);
+  --color-red-200: oklch(0.24 0.0626 31.3);
+
+  /* Yellow scale */
+  --color-yellow-1300: oklch(0.95 0.0213 75);
+  --color-yellow-1200: oklch(0.922 0.0428 75);
+  --color-yellow-1100: oklch(0.892 0.0656 75);
+  --color-yellow-1000: oklch(0.852 0.0966 75);
+  --color-yellow-900: oklch(0.825 0.1196 75);
+  --color-yellow-800: oklch(0.837 0.14 75);
+  --color-yellow-700: oklch(0.67 0.1336 78.3);
+  --color-yellow-600: oklch(0.563 0.125 81.7);
+  --color-yellow-500: oklch(0.474 0.1081 85);
+  --color-yellow-400: oklch(0.379 0.0853 88.3);
+  --color-yellow-300: oklch(0.308 0.0685 91.7);
+  --color-yellow-200: oklch(0.24 0.0526 95);
+
+  /* Green scale (default accent) */
+  --color-green-1300: oklch(0.95 0.0292 163.7);
+  --color-green-1200: oklch(0.922 0.0586 163.7);
+  --color-green-1100: oklch(0.892 0.0899 163.7);
+  --color-green-1000: oklch(0.852 0.1324 163.7);
+  --color-green-900: oklch(0.825 0.164 163.7);
+  --color-green-800: oklch(0.77 0.1919 163.7);
+  --color-green-700: oklch(0.67 0.1831 167);
+  --color-green-600: oklch(0.563 0.1714 170.4);
+  --color-green-500: oklch(0.474 0.1481 173.7);
+  --color-green-400: oklch(0.379 0.1169 177);
+  --color-green-300: oklch(0.308 0.0938 180.4);
+  --color-green-200: oklch(0.24 0.0722 183.7);
+
+  --radius-sm: 0.0625rem;
+  --radius-md: 0.125rem;
+  --radius-lg: 0.25rem;
+  --radius-xl: 0.375rem;
+  --radius-full: 624.9375rem;
+  --radius: var(--radius-md);
+
+  --sidebar-width: 14.25rem;
+  --top-bar-height: 54px;
+}

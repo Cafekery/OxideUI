@@ -1,0 +1,16 @@
+/* Entry point. Import once, at the top of the consuming app's stylesheet:
+
+     @import '@cafekery/oxide-ui/styles';
+     @source '../node_modules/@cafekery/oxide-ui/dist';
+
+   The `@source` line is required: Tailwind only emits classes it can see, and
+   the package's compiled components live outside the app's own scan roots. */
+
+@import "tailwindcss";
+
+@import "./tokens.css";
+@import "./semantic.css";
+@import "./utilities.css";
+@import "./base.css";
+
+@custom-variant light (&:where([data-theme="light"], [data-theme="light"] *));
