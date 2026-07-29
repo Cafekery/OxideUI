@@ -76,7 +76,7 @@ export function App() {
   }, [])
 
   const args = useMemo<Args>(() => {
-    if (!entry) return {}
+    if (!entry?.acceptsArgs) return {}
     const edited = argsById[entry.id]
     if (edited) return edited
     return entry.id === opened.storyId

@@ -33,8 +33,9 @@ const index: IndexEntry[] = stories.map((story) => ({
   id: story.id,
   name: story.name,
   title: story.title,
-  initialArgs: story.initialArgs,
-  argTypes: inferControls(story.initialArgs, story.argTypes),
+  acceptsArgs: story.acceptsArgs,
+  initialArgs: story.acceptsArgs ? story.initialArgs : {},
+  argTypes: story.acceptsArgs ? inferControls(story.initialArgs, story.argTypes) : {},
 }))
 
 function render(storyId: string, args: Args, globals: Globals) {

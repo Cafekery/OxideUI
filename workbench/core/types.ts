@@ -17,6 +17,8 @@ export type PreparedStory = {
   name: string
   /** Slash-delimited sidebar path, e.g. `Primitives/Button`. */
   title: string
+  /** False when the story's own render takes no parameter, so args cannot reach it. */
+  acceptsArgs: boolean
   initialArgs: Args
   argTypes: Record<string, ArgType>
   decorators: Decorator[]
@@ -25,7 +27,7 @@ export type PreparedStory = {
 }
 
 /** Sidebar entry: everything the chrome needs without evaluating a story. */
-export type IndexEntry = Pick<PreparedStory, 'id' | 'name' | 'title'> & {
+export type IndexEntry = Pick<PreparedStory, 'id' | 'name' | 'title' | 'acceptsArgs'> & {
   initialArgs: Args
   argTypes: Record<string, ArgType>
 }

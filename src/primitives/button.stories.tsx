@@ -21,12 +21,17 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {}
 
 export const AllVariants: Story = {
-  render: () => (
+  argTypes: {
+    variant: { disable: true },
+    size: { disable: true },
+    children: { disable: true },
+  },
+  render: (args) => (
     <div className="flex flex-col gap-4">
       {(['base', 'sm'] as const).map((size) => (
         <div key={size} className="flex flex-wrap items-center gap-2">
           {VARIANTS.map((variant) => (
-            <Button key={variant} variant={variant} size={size}>
+            <Button {...args} key={variant} variant={variant} size={size}>
               {variant}
             </Button>
           ))}

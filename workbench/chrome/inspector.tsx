@@ -112,7 +112,11 @@ function Controls({
       <EmptyState
         icon={<Filter />}
         title="No controls"
-        description="This story declares no controllable args."
+        description={
+          entry && !entry.acceptsArgs
+            ? 'This story renders a fixed example. Its render function takes no args, so there is nothing to drive.'
+            : 'This story declares no controllable args.'
+        }
       />
     )
 

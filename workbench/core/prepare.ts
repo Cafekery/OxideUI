@@ -77,10 +77,15 @@ export const prepareModule = (importPath: string, mod: StoryModule): PreparedSto
     const derivedName = startCase(exportName)
     const id = toId(title, derivedName)
 
+    // A custom render that declares no parameter can never see args, so the
+    // controls panel must not offer any.
+    const acceptsArgs = story.render ? story.render.length > 0 : true
+
     prepared.push({
       id,
       name: story.name || derivedName,
       title,
+      acceptsArgs,
       initialArgs: { ...meta.args, ...story.args },
       argTypes: deepMerge(meta.argTypes ?? {}, story.argTypes ?? {}),
       decorators: [...(story.decorators ?? []), ...(meta.decorators ?? [])],

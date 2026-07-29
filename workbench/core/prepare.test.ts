@@ -118,17 +118,39 @@ describe('prepareModule', () => {
       default: {
         component: Dummy,
         argTypes: {
-          size: { control: 'select', options: ['sm', 'lg'], description: 'from meta' },
+          size: { control: 'select', options: ['sm', 'lg'], disable: false },
           label: { control: 'text' },
         },
       },
-      Basic: { argTypes: { size: { description: 'from story' } } },
+      Basic: { argTypes: { size: { disable: true } } },
     })
 
     expect(story.argTypes).toEqual({
-      size: { control: 'select', options: ['sm', 'lg'], description: 'from story' },
+      size: { control: 'select', options: ['sm', 'lg'], disable: true },
       label: { control: 'text' },
     })
+  })
+
+  it('accepts args when the story has no render of its own', () => {
+    expect(only({ default: { component: Dummy }, Basic: {} }).acceptsArgs).toBe(true)
+  })
+
+  it('accepts args when a custom render declares a parameter', () => {
+    const story = only({
+      default: { component: Dummy },
+      Basic: { render: ((args: unknown) => args) as unknown as PreparedStory['render'] },
+    })
+
+    expect(story.acceptsArgs).toBe(true)
+  })
+
+  it('rejects args when a custom render declares no parameter', () => {
+    const story = only({
+      default: { component: Dummy },
+      Basic: { render: (() => null) as unknown as PreparedStory['render'] },
+    })
+
+    expect(story.acceptsArgs).toBe(false)
   })
 
   it('deep-merges parameters with the story winning', () => {
