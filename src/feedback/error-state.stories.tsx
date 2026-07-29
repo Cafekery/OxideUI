@@ -21,7 +21,6 @@ export const CustomCopy: Story = {
   },
 }
 
-/** `error` is passed in both stories below; only the second one is allowed to show it. */
 export const ErrorWithheld: Story = {
   args: { error: FAILURE, onRetry: () => {} },
 }

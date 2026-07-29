@@ -11,7 +11,6 @@ export type { AnyComponent, ArgType, ControlKind, Decorator, StoryParameters }
 
 export type Args = Record<string, unknown>
 
-/** A story after meta/story merging, ready to render. */
 export type PreparedStory = {
   id: string
   /** Display name, e.g. `Primary Large`. */

@@ -134,11 +134,11 @@ describe('prepareModule', () => {
 
   it('deep-merges parameters with the story winning', () => {
     const story = only({
-      default: { component: Dummy, parameters: { layout: 'centered', bare: true } },
+      default: { component: Dummy, parameters: { layout: 'centered' } },
       Basic: { parameters: { layout: 'fullscreen' } },
     })
 
-    expect(story.parameters).toEqual({ layout: 'fullscreen', bare: true })
+    expect(story.parameters).toEqual({ layout: 'fullscreen' })
   })
 
   it('concatenates decorators story-first so meta ends up outermost', () => {

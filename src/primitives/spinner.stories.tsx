@@ -29,7 +29,6 @@ export const AllSizes: Story = {
   ),
 }
 
-/** Colour is inherited, so the spinner matches whatever it sits inside. */
 export const InheritsColour: Story = {
   render: () => (
     <div className="flex items-center gap-4">

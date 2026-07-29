@@ -20,7 +20,6 @@ export const Default: Story = {
   ),
 }
 
-/** A vertical rule takes its height from the row, so the row must have one. */
 export const Vertical: Story = {
   render: () => (
     <div className="flex h-6 items-stretch gap-3 text-sans-md text-secondary">

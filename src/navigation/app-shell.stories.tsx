@@ -10,7 +10,7 @@ import { TopBar } from './top-bar'
 
 const meta = {
   component: AppShell,
-  parameters: { layout: 'fullscreen', bare: true },
+  parameters: { layout: 'fullscreen' },
 } satisfies Meta<typeof AppShell>
 
 export default meta

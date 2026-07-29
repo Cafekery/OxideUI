@@ -83,26 +83,21 @@ describe('inferControls', () => {
   })
 
   it('covers argTypes-only keys that have no initial arg', () => {
-    expect(
-      infer(
-        {},
-        { variant: { options: ['a', 'b'] }, note: { description: 'no control' } },
-      ),
-    ).toEqual({
+    expect(infer({}, { variant: { options: ['a', 'b'] }, note: {} })).toEqual({
       variant: { control: 'select', options: ['a', 'b'] },
     })
   })
 
   it('preserves the rest of the argType alongside the inferred control', () => {
-    expect(infer({ label: 'Save' }, { label: { description: 'Button text' } })).toEqual({
-      label: { description: 'Button text', control: 'text' },
+    expect(infer({ label: 'Save' }, { label: { disable: false } })).toEqual({
+      label: { disable: false, control: 'text' },
     })
   })
 
   it('does not mutate the argTypes it was given', () => {
-    const argTypes: Record<string, ArgType> = { label: { description: 'Button text' } }
+    const argTypes: Record<string, ArgType> = { label: { disable: false } }
     inferControls({ label: 'Save' }, argTypes)
 
-    expect(argTypes).toEqual({ label: { description: 'Button text' } })
+    expect(argTypes).toEqual({ label: { disable: false } })
   })
 })

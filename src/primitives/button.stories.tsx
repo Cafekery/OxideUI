@@ -73,7 +73,6 @@ export const WithGlyph: Story = {
   ),
 }
 
-/** The label stays in the DOM while loading, so the button holds its width. */
 export const LoadingHoldsWidth: Story = {
   render: () => (
     <div className="flex flex-col items-start gap-2">

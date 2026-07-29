@@ -37,7 +37,6 @@ export const AllSizes: Story = {
   ),
 }
 
-/** Each name hashes to a fixed hue, so the same person keeps their colour. */
 export const Tints: Story = {
   render: () => (
     <div className="flex flex-wrap items-center gap-3">

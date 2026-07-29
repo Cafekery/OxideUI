@@ -44,7 +44,6 @@ export const Sizes: Story = {
   ),
 }
 
-/** Out-of-range input is clamped rather than overflowing the track. */
 export const Clamped: Story = {
   render: () => (
     <div className="flex w-80 flex-col gap-4">

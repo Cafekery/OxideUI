@@ -155,8 +155,6 @@ export const Sparklines: Story = {
   ),
 }
 
-/** `color` on a series overrides the palette order. Reading it back off the
- *  theme keeps a bespoke assignment inside the token set. */
 function RecolouredLatency() {
   const theme = useChartTheme()
   return (
@@ -180,7 +178,6 @@ const flipTheme = () => {
   root.dataset.theme = root.dataset.theme === 'light' ? 'dark' : 'light'
 }
 
-/** Proves the token bridge: the charts restyle in place, without remounting. */
 export const ThemeSwitch: Story = {
   render: () => (
     <div className="flex max-w-2xl flex-col gap-4">

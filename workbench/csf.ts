@@ -1,5 +1,4 @@
-/* Component Story Format, reduced to the parts the gallery actually renders.
-   Structurally compatible with CSF3, so stories stay portable. */
+/* Component Story Format, reduced to what the gallery renders. */
 
 import type { ComponentProps, ComponentType, ReactElement } from 'react'
 
@@ -8,8 +7,7 @@ export type ControlKind = 'text' | 'number' | 'boolean' | 'select' | 'color'
 export type ArgType = {
   control?: ControlKind
   options?: readonly (string | number)[]
-  description?: string
-  /** Hide from the controls panel. */
+  /** Keeps the arg out of the controls panel. */
   disable?: boolean
 }
 
@@ -17,8 +15,6 @@ export type Decorator = (Story: ComponentType) => ReactElement
 
 export type StoryParameters = {
   layout?: 'centered' | 'padded' | 'fullscreen'
-  /** Skip the surrounding padded canvas frame. */
-  bare?: boolean
 }
 
 // Props are contravariant, so `any` is the only constraint that accepts every component.

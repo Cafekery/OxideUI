@@ -13,8 +13,6 @@ const AnchorLink: LinkComponent = ({ to, ...rest }) => <a href={to} {...rest} />
 
 const LinkContext = createContext<LinkComponent>(AnchorLink)
 
-/** Supplies the host router's link component; navigation components stay
- *  router-agnostic and fall back to a plain anchor without it. */
 export function OxideProvider({
   link = AnchorLink,
   children,

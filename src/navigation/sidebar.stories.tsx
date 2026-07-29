@@ -5,7 +5,6 @@ import { Sidebar, SidebarFooter, SidebarSection } from './sidebar'
 
 const meta = {
   component: Sidebar,
-  parameters: { bare: true },
 } satisfies Meta<typeof Sidebar>
 
 export default meta
