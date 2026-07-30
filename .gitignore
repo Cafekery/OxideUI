@@ -1,5 +1,4 @@
 node_modules
-dist
 gallery-dist
 *.tsbuildinfo
 .DS_Store

@@ -2,7 +2,7 @@
   "name": "@cafekery/oxide-ui",
   "version": "0.1.0",
   "private": true,
-  "description": "Oxide Design System — the shared React component library for Cafekery apps.",
+  "description": "Oxide Design System \u2014 the shared React component library for Cafekery apps.",
   "type": "module",
   "sideEffects": [
     "**/*.css"
@@ -30,8 +30,7 @@
     "lint:fix": "biome check --write .",
     "lint:css": "bun scripts/check-tokens.ts",
     "test": "vitest run",
-    "verify": "bun run lint && bun run lint:css && bun run typecheck && bun run build && bun run test && bun run gallery:build",
-    "prepare": "bun run build"
+    "verify": "bun run lint && bun run lint:css && bun run typecheck && bun run build && bun run test && bun run gallery:build"
   },
   "peerDependencies": {
     "react": "^19.0.0",
