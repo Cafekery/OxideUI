@@ -30,8 +30,7 @@
     "lint:fix": "biome check --write .",
     "lint:css": "bun scripts/check-tokens.ts",
     "test": "vitest run",
-    "verify": "bun run lint && bun run lint:css && bun run typecheck && bun run build && bun run test && bun run gallery:build",
-    "prepare": "bun run build"
+    "verify": "bun run lint && bun run lint:css && bun run typecheck && bun run build && bun run test && bun run gallery:build"
   },
   "peerDependencies": {
     "react": "^19.0.0",
@@ -42,9 +41,7 @@
     "motion": "^12.43.0",
     "radix-ui": "^1.6.7",
     "recharts": "^3.10.1",
-    "sonner": "^2.0.7",
-    "tsdown": "^0.22.14",
-    "typescript": "^6.0.3"
+    "sonner": "^2.0.7"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.5.6",
@@ -60,6 +57,8 @@
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "tailwindcss": "^4.3.3",
+    "tsdown": "^0.22.14",
+    "typescript": "^6.0.3",
     "vite": "^8.1.5",
     "vitest": "^4.1.10"
   },
